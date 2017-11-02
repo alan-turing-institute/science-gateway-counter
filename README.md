@@ -23,5 +23,6 @@ az webapp config appsettings set --name $APP_NAME --resource-group $APP_NAME --s
 ```
 git remote add azure https://<username>@science-gateway-users.scm.azurewebsites.net/science-gateway-users.git
 git push azure master
+
 ```
 
