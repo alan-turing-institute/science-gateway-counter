@@ -11,17 +11,16 @@ class User(db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    email = db.Column(db.String(255), unique=True, nullable=False)
+    username = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
     admin = db.Column(db.Boolean, nullable=False, default=False)
 
-    def __init__(self, email, password, admin=False):
-        self.email = email
+    def __init__(self, username, password, admin=False):
+        self.username = username
         self.password = bcrypt.generate_password_hash(
-            password, app.config.get('BCRYPT_LOG_ROUNDS')
+            password, current_app.config.get('BCRYPT_LOG_ROUNDS')
         ).decode()
-        # self.password = password
         self.registered_on = datetime.datetime.now()
         self.admin = admin
 
@@ -36,9 +35,10 @@ class User(db.Model):
                 'iat': datetime.datetime.utcnow(),
                 'sub': user_id
             }
+
             return jwt.encode(
                 payload,
-                app.config.get('SECRET_KEY'),
+                current_app.config.get('SECRET_KEY'),
                 algorithm='HS256'
             )
         except Exception as e:
@@ -52,7 +52,7 @@ class User(db.Model):
         :return: integer|string
         """
         try:
-            payload = jwt.decode(auth_token, app.config.get('SECRET_KEY'))
+            payload = jwt.decode(auth_token, current_app.config.get('SECRET_KEY'))
             is_blacklisted_token = BlacklistToken.check_blacklist(auth_token)
             if is_blacklisted_token:
                 return 'Token blacklisted. Please log in again.'

@@ -2,12 +2,12 @@ from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
 
-from service.auth.api import UserApi
+from service.auth.api import UserApi, RegisterApi, LoginApi, LogoutApi
 from service.database import db, ma, bcrypt
 
 def create_app(config_name):
     app = Flask(__name__, instance_relative_config=True)
-    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    CORS(app, resources={r"/auth/*": {"origins": "*"}})
 
     # Import environment specific variables from the supplied
     # configuration
@@ -26,6 +26,10 @@ def create_app(config_name):
     # Load the URI stems from the base config
     from config.base import URI_STEMS
     api = Api(app)
-    api.add_resource(UserApi, '/api/status')
+
+    api.add_resource(RegisterApi, '/auth/register')
+    api.add_resource(LoginApi, '/auth/login')
+    api.add_resource(UserApi, '/auth/status')
+    api.add_resource(LogoutApi, '/auth/logout')
 
     return app

@@ -16,11 +16,11 @@ Flask-SQLAlchemy==2.3.2
 idna==2.6
 itsdangerous==0.24
 Jinja2==2.9.6
-jwt==0.5.2
 Mako==1.0.7
 MarkupSafe==1.0
 pyasn1==0.3.7
 pycparser==2.18
+PyJWT==1.5.3
 python-dateutil==2.6.1
 python-editor==1.0.3
 pytz==2017.3
