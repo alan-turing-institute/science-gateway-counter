@@ -2,7 +2,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
 
-from service.auth.api import UserApi, RegisterApi, LoginApi, LogoutApi
+from service.auth.api import CounterApi
 from service.database import db, ma, bcrypt
 
 def create_app(config_name):
@@ -24,12 +24,9 @@ def create_app(config_name):
     db.create_all(app=app)
 
     # Load the URI stems from the base config
-    from config.base import URI_STEMS
+    # from config.base import URI_STEMS
     api = Api(app)
 
-    api.add_resource(RegisterApi, '/auth/register')
-    api.add_resource(LoginApi, '/auth/login')
-    api.add_resource(UserApi, '/auth/status')
-    api.add_resource(LogoutApi, '/auth/logout')
+    api.add_resource(CounterApi, '/api/count')
 
     return app

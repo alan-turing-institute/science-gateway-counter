@@ -20,3 +20,8 @@ az webapp config set --python-version 3.4 --name $APP_NAME --resource-group $APP
 az webapp config appsettings set --name $APP_NAME --resource-group $APP_NAME --settings APP_CONFIG_NAME=production
 ```
 
+```
+git remote add azure https://<username>@science-gateway-users.scm.azurewebsites.net/science-gateway-users.git
+git push azure master
+```
+
