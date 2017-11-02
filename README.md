@@ -1,6 +1,6 @@
-# Science Gateway Users
+# Science Gateway Counter
 
-User management for Science Gateway.  Generates JSON web tokens (<https://jwt.io/>) for use throughout Science Gateway services.
+Counter service for Science Gateway. 
 
 ### Local deployment
 
@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ### Azure deployment
 
 ```
-export APP_NAME=Science-Gateway-Users
+export APP_NAME=Science-Gateway-Counter
 az group create --name $APP_NAME --location westeurope
 az appservice plan create --name $APP_NAME --resource-group $APP_NAME --sku S1  # use S1 or higher for access to development slots
 az webapp create --name $APP_NAME --resource-group $APP_NAME --plan $APP_NAME
