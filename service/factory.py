@@ -7,7 +7,7 @@ from service.database import db, ma, bcrypt
 
 def create_app(config_name):
     app = Flask(__name__, instance_relative_config=True)
-    CORS(app, resources={r"/auth/*": {"origins": "*"}})
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     # Import environment specific variables from the supplied
     # configuration

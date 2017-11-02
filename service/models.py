@@ -12,12 +12,14 @@ class Organisation(db.Model):
     __tablename__ = "organisation"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String)
     credit = db.Column(db.Integer())  # remaining simulation credit
     tally = db.Column(db.Integer())  # tally of simulations run
 
     users = db.relationship("User", back_populates="organisation", lazy="joined")
 
-    def __init__(self, credit=0, tally=0):
+    def __init__(self, name="", credit=0, tally=0):
+        self.name = name
         self.credit = credit
         self.tally = tally
 
